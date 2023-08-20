@@ -51,10 +51,10 @@ class HotelCareer(commands.Cog):
     message = await ctx.reply("Ok att.")
     open("on", "w").close()
     try:
-      os.remove('emails.txt')
+      os.remove('emails/emails.txt')
     except:
       pass
-    open("emails.txt", "w").close()
+    open("emails/emails.txt", "w").close()
     try:
       # Initialize driver
       options = Options()
@@ -137,7 +137,7 @@ class HotelCareer(commands.Cog):
 
         # Save emails to a file
         emails = list(set(emails))
-        with open('emails.txt', 'a') as file:
+        with open('emails/emails.txt', 'a') as file:
           for email in emails:
               file.write(email + '\n')
 
@@ -149,7 +149,6 @@ class HotelCareer(commands.Cog):
           close_button.click()
         except:
           pass
-
 
     except Exception as e:
       for file in ["geckodriver.log", "on"]:
@@ -165,6 +164,8 @@ class HotelCareer(commands.Cog):
           os.remove(file)
         except:
           pass
+    
+    await ctx.channel.send("salit.")
 
 def setup(bot):
   bot.add_cog(HotelCareer(bot))
