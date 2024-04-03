@@ -2,6 +2,7 @@ from nextcord.ext import commands
 import nextcord
 import os
 
+token = os.environ["TOKEN"]
 bot = commands.Bot(intents=nextcord.Intents.all(), command_prefix='.')
 
 @bot.event
@@ -21,8 +22,8 @@ async def on_command_error(ctx, error):
 
 
 # scan cocks
-for cock in os.listdir('./cocks'):
-  if cock.endswith('.py'):
-    bot.load_extension('cocks.' + cock[:-3])
+for cog in os.listdir('./cogs'):
+  if cog.endswith('.py'):
+    bot.load_extension('cogs.' + cog[:-3])
 
-bot.run("MTEzOTE4MzU2NjQ1OTI0ODY1Mg.GYKKqY.2_vAJd44aP3DEhmDuc3bVIKu3yFPyAQxW0Vtz4")
+bot.run(token)
